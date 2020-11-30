@@ -1,6 +1,8 @@
 //Owner: Aditya Kulkarni
 //CreatedOn: 30/11/2020
 
+import java.util.NoSuchElementException;
+
 class MyStack <T> {
 	private T data;
 	private MyStack <T> next;
@@ -27,7 +29,7 @@ class MyStack <T> {
 	public T pop(){
 		T data;
 		if(top == null){
-			return null;
+			throw new NoSuchElementException();
 		}
 		else{
 			data = top.data;
@@ -36,10 +38,10 @@ class MyStack <T> {
 		return data;
 	}
 	
-	public T peep(){
+	public T peek(){
 		T data;
 		if(top == null){
-			return null;
+			throw new NoSuchElementException();
 		}
 		else{
 			data = top.data;

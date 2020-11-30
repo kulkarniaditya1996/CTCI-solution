@@ -2,6 +2,8 @@
 //Owner: Aditya Kulkarni
 //CreatedOn: 30/11/2020
 
+import java.util.NoSuchElementException;
+
 class MyQueue <T> {
 	private T data;
 	private MyQueue <T> next;
@@ -17,7 +19,7 @@ class MyQueue <T> {
 		this.head = null;
 	}
 	
-	public void push(T data){
+	public void add(T data){
 		MyQueue<T> node = new MyQueue<T>(data);
 		if(top == null){
 			top = node;
@@ -29,10 +31,10 @@ class MyQueue <T> {
 		}
 	}
 	
-	public T pop(){
+	public T remove(){
 		T data;
 		if(head == null){
-			return null;
+			throw new NoSuchElementException();
 		}
 		else{
 			data = head.data;
@@ -41,10 +43,10 @@ class MyQueue <T> {
 		return data;
 	}
 	
-	public T peep(){
+	public T peek(){
 		T data;
 		if(head == null){
-			return null;
+			throw new NoSuchElementException();
 		}
 		else{
 			data = head.data;
