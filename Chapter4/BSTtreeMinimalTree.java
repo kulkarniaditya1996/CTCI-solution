@@ -1,7 +1,7 @@
 //Owner: Aditya Kulkarni
 //CreatedOn: 7/12/2020
 
-public class BSTtree {
+public class BSTtreeMinimalTree {
 	private Node root;
 	
 	class Node{
@@ -69,5 +69,22 @@ public class BSTtree {
 			System.out.println(current.data);
 			printwithRoot(current.right);
 		}
+	}
+	
+	public void minimalTree(int[] arr) {
+		root =  createMinimalTree(arr,0,arr.length-1);		
+	}
+	
+	private Node createMinimalTree(int[] arr, int start, int end) {
+		// TODO Auto-generated method stub
+		if(end< start) {
+			return null;
+		}
+		int mid = (start+end)/2;
+		Node n = new Node(arr[mid]);
+		n.left = createMinimalTree(arr,start,mid-1);
+		n.right = createMinimalTree(arr,mid+1,end);
+		
+		return n;
 	}
 }

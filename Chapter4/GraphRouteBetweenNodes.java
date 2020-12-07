@@ -1,7 +1,7 @@
 //Owner: Aditya Kulkarni
 //CreatedOn: 7/12/2020
 
-public class Graph <T> {
+public class GraphRouteBetweenNodes <T> {
 	private Map<T,List<T>> map = new HashMap<>();
 	
 	public void addVertex(T data) {
