@@ -26,7 +26,7 @@ class MyQueue <T> {
 			head = node;
 		}
 		else{
-			node.next = top;
+			top.next = node;
 			top = node;
 		}
 	}
