@@ -1,0 +1,93 @@
+//Owner: Aditya Kulkarni
+//CreatedOn: 7/12/2020
+
+public class BSTtreeisBalanced {
+	private Node root;
+	
+	class Node{
+		private int data;
+		private Node left;
+		private Node right;
+		private Node parent;
+		
+		public Node(int data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+			this.parent = null;
+		}
+	}
+	
+	public BSTtree() {
+		this.root = null;
+	}
+	
+	public void add(int data) {
+		Node node = new Node(data);
+		if(root == null) {
+			root = node;
+		}
+		else {
+			addwithroot(root,node);
+		}
+	}
+
+	private void addwithroot(Node current, Node node) {
+		// TODO Auto-generated method stub
+		if(node.data < current.data) {
+			if(current.left == null) {
+				node.parent = current;
+				current.left = node;
+				return;
+			}
+			else {
+				addwithroot(current.left, node);
+			}
+		}
+		else {
+			if(current.right == null) {
+				node.parent = current;
+				current.right = node;
+				return;
+			}
+			else {
+				addwithroot(current.right, node);
+			}
+		}
+	}
+
+	private void print() {
+		// TODO Auto-generated method stub
+		Node current = root;
+		printwithRoot(current);
+	}
+
+	private void printwithRoot(Node current) {
+		// TODO Auto-generated method stub
+		if(current != null) {
+			printwithRoot(current.left);
+			System.out.println(current.data);
+			printwithRoot(current.right);
+		}
+	}
+	
+	private int checkHeight(Node root) {
+		if(root == null) return -1;
+		 int leftHeight = checkHeight(root.left);
+		 if (leftHeight == Integer.MIN_VALUE) return  Integer.MIN_VALUE;
+		 int rightHeight = checkHeight(root.right);
+		 if (rightHeight == Integer.MIN_VALUE) return  Integer.MIN_VALUE;
+		 int height = leftHeight - rightHeight;
+		 if(Math.abs(height) > 1) {
+			 return Integer.MIN_VALUE;
+		 }
+		 else {
+			 return Math.max(leftHeight, rightHeight)+1;
+		 }
+	}
+	
+	public boolean isBalance() {
+		int value = checkHeight(root);
+		return value == Integer.MIN_VALUE ? false: true;
+	}
+}
