@@ -90,30 +90,22 @@ public class BSTtreeCreateLevel {
 	
 	public List depth() {
 		List<List<Node>> ls = new LinkedList<>();
-		Queue<Node> queue = new LinkedList<>();
-		queue.add(root);
+		List<Node> current  = new LinkedList<>();
+		current.add(root);
 		int depth = 0;
-		int maxNodes = 1;
-		while(!queue.isEmpty()) {
-			Node temp = queue.remove();
-			if(ls.size()-1 < depth) {
-				List<Node> tempList = new LinkedList<>();
-				tempList.add(temp);
-				ls.add(depth, tempList);
+		while(!current.isEmpty()) {
+			ls.add(depth, current);
+			current = new LinkedList<Node>();
+			List<Node> temp = ls.get(depth);
+			for(Node n : temp) {
+				if(n.left != null) {
+					current.add(n.left);
+				}
+				if(n.right != null) {
+					current.add(n.right);
+				}
 			}
-			else {
-				ls.get(depth).add(temp);
-			}
-			if(ls.get(depth).size() == maxNodes) {
-				depth++;
-				maxNodes = maxNodes*2;
-			}
-			if(temp.left != null) {
-				queue.add(temp.left);
-			}
-			if(temp.right != null) {
-				queue.add(temp.right);
-			}
+			depth++;
 		}
 		return ls;
 	}
