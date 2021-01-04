@@ -1,3 +1,5 @@
+//Owner: Aditya Kulkarni
+//CreatedOn: 03/01/2021
 class Insertion{
 	public static int updateBits(int n, int m, int i, int j) {
 		int maskLeft = -1 << (j+1);
